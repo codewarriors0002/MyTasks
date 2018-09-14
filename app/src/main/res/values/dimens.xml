@@ -8,4 +8,9 @@
     <dimen name="signIn_sPaddingTop">45dp</dimen>
     <dimen name="signIn_sTextSize">20dp</dimen>
     <dimen name="signIn_sPaddingHorizotal">15dp</dimen>
+    <dimen name="fment_profile_img_marginTop">45dp</dimen>
+    <dimen name="fment_profile_paddingHorizontal">10dp</dimen>
+
+    <dimen name="fment_profile_inputContainer_marginTop">20dp</dimen>
+    <dimen name="fment_profile_input_marginTop">12dp</dimen>
 </resources>

@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
 
+import com.gihan.dias.mytasks.models.User;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -106,10 +107,32 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
     private void updateUI(GoogleSignInAccount account) {
         if (account != null){
             String name = account.getDisplayName();
-            Toast toast = Toast.makeText(context, name+"Your succusfuly sign in ", Toast.LENGTH_SHORT);
-            toast.show();
+            String emailAddress = account.getEmail();
+            String profileImgUrl = account.getPhotoUrl().toString();
+
+            User user = new User(name, emailAddress, profileImgUrl);
+            user.save();
+
+           // User userr = (User) SugarRecord.find(User.class, "?","1");
+          //  User userr =  User.findById(User.class, (long) 1);
+          //  Toast toast = Toast.makeText(getApplicationContext(), userr.name, Toast.LENGTH_SHORT);
+          //  toast.show();
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
         }
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        // Check for existing Google Sign In account, if the user is already signed in
+        // the GoogleSignInAccount will be non-null.
+        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
+         if(account != null){
+             updateUI(account);
+         }
 
+
+
+    }
 }

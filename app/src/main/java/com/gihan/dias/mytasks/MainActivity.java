@@ -2,9 +2,10 @@ package com.gihan.dias.mytasks;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -12,9 +13,22 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.gihan.dias.mytasks.models.User;
+import com.squareup.picasso.Picasso;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private ImageView mivProfile;
+    private TextView mtvName;
+    private TextView mtvEmail;
+    private User user;
+    private NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +36,19 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
+        View headerView = navigationView.getHeaderView(0);
+
+        // get user details from database
+        user = User.findById(User.class, (long) 1);
+
+        mivProfile = (ImageView) headerView.findViewById(R.id.imgProfile);
+        mtvName = (TextView) headerView.findViewById(R.id.txtName);
+        mtvEmail = (TextView) headerView.findViewById(R.id.txtEmail);
+
+        // call to displayProfileDetails for
+        displayProfileDetails();
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -40,8 +67,22 @@ public class MainActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+
         navigationView.setNavigationItemSelectedListener(this);
+    }
+
+    private void displayProfileDetails() {
+        if(user != null){
+            String name = user.getName();
+            String email = user.getEmailAddress();
+            String profileImg = user.getProfileImgUrl();
+
+            //img loading in to Image View using picasso image downloading and caching library
+            Picasso.get().load(profileImg).into(mivProfile);
+            mtvName.setText(name);
+            mtvEmail.setText(email);
+        }
+
     }
 
     @Override
@@ -51,6 +92,19 @@ public class MainActivity extends AppCompatActivity
             drawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
+        }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        try {
+
+            User user = User.findById(User.class, (long) 1);
+            Toast toast = Toast.makeText(getApplicationContext(), user.getName(), Toast.LENGTH_SHORT);
+            toast.show();
+        }catch (Exception e){
+
         }
     }
 
@@ -82,8 +136,8 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
+        if (id == R.id.nav_profille) {
+            loadprofileFragment();
         } else if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.nav_slideshow) {
@@ -100,4 +154,14 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+    private void loadprofileFragment(){
+        ProfileFragment profileFragment = ProfileFragment.newInstance();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.content_frame,profileFragment,"messagesFragment");
+        transaction.commit();
+    }
+
+
 }
