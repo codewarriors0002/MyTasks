@@ -3,7 +3,6 @@ package com.gihan.dias.mytasks;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
@@ -16,7 +15,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.gihan.dias.mytasks.models.User;
 import com.squareup.picasso.Picasso;
@@ -54,11 +52,15 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+// using putExtra(String key, Parcelable value) method
+              //  intent.putExtra(“parcel_data”, movie);
+                //Movie movie = (Movie) getIntent().getParcelableExtra("parcel_data");
+
+               // Intent intent = new Intent(getActivity(), AddEditTaskActivity.class);
+               // startActivity(intent);
+                loadAddEditeFragment();
             }
         });
-
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -69,6 +71,8 @@ public class MainActivity extends AppCompatActivity
 
 
         navigationView.setNavigationItemSelectedListener(this);
+
+        loadTasksFragment();
     }
 
     private void displayProfileDetails() {
@@ -95,18 +99,7 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        try {
 
-            User user = User.findById(User.class, (long) 1);
-            Toast toast = Toast.makeText(getApplicationContext(), user.getName(), Toast.LENGTH_SHORT);
-            toast.show();
-        }catch (Exception e){
-
-        }
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -160,6 +153,22 @@ public class MainActivity extends AppCompatActivity
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.content_frame,profileFragment,"messagesFragment");
+        transaction.commit();
+    }
+
+    private void loadTasksFragment(){
+        TasksFragment tasksFragment = TasksFragment.newInstance();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.content_frame,tasksFragment,"tasksFragment");
+        transaction.commit();
+    }
+
+    private void loadAddEditeFragment(){
+        AddEditTaskFragment addEditTaskFragment = AddEditTaskFragment.newInstance();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.content_frame,addEditTaskFragment,"addEditTaskFragment");
         transaction.commit();
     }
 

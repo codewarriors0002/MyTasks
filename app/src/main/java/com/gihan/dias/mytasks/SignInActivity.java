@@ -18,6 +18,8 @@ import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 
+
+
 public class SignInActivity extends AppCompatActivity implements View.OnClickListener{
 
     private Context context;
@@ -34,6 +36,8 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
         context = getApplicationContext();
         signIn = (SignInButton) findViewById(R.id.sign_in_button);
         signIn.setOnClickListener(this);
+
+
 
         //Configure Google Sign-in object
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -112,11 +116,19 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
 
             User user = new User(name, emailAddress, profileImgUrl);
             user.save();
+          /*  com.gihan.dias.mytasks.models.Task task1 = new com.gihan.dias.mytasks.models.Task("task1","2015-08-11 ","type1");
+            task1.save();
+            com.gihan.dias.mytasks.models.Task task2 = new com.gihan.dias.mytasks.models.Task("task2","2015-08-12 ","type1");
+            task2.save();
+            com.gihan.dias.mytasks.models.Task task3 = new com.gihan.dias.mytasks.models.Task("task3","2015-08-13 ","type1");
+            task3.save();
+            com.gihan.dias.mytasks.models.Task task4 = new com.gihan.dias.mytasks.models.Task("task4","2015-08-14 ","type1");
+            task4.save();
+            com.gihan.dias.mytasks.models.Task task5 = new com.gihan.dias.mytasks.models.Task("task5","2018-09-16 ","type1");
+            task5.save();
+                */
 
-           // User userr = (User) SugarRecord.find(User.class, "?","1");
-          //  User userr =  User.findById(User.class, (long) 1);
-          //  Toast toast = Toast.makeText(getApplicationContext(), userr.name, Toast.LENGTH_SHORT);
-          //  toast.show();
+
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         }

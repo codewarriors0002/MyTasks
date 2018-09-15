@@ -15,4 +15,10 @@
     <string name="profile_name">Profile Name</string>
     <string name="email">email</string>
     <string name="update">Update</string>
+    <string name="task_name">Task Name</string>
+    <string name="defalt_date_time">dd-mmm-yyy,hh:mm:ss</string>
+    <string name="defalt">Default</string>
+    <string name="header">Header</string>
+    <string name="something_wrong">Something Wrong</string>
+    <string name="title_activity_add_edit_task">AddEditTaskActivity</string>
 </resources>

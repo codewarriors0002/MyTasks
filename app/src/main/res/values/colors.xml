@@ -5,4 +5,5 @@
     <color name="colorAccent">#FF4081</color>
     <color name="primaryBlue">#4F6D7A</color>
     <color name="signIn_sTextColor">#ffffff</color>
+    <color name="white">#ffffff</color>
 </resources>
