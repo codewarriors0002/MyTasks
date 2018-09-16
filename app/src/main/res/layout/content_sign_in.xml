@@ -6,17 +6,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center_horizontal"
-    android:paddingTop="@dimen/signIn_sPaddingTop"
+    android:gravity="center"
     android:paddingHorizontal="@dimen/signIn_sPaddingHorizotal"
     android:background="@color/primaryBlue"
-    tools:context=".SignInActivity"
+    tools:context=".UI.activity.SignInActivity"
     tools:showIn="@layout/activity_sign_in">
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@mipmap/ic_launcher"/>
+        android:src="@mipmap/ic_signin_profile_img"/>
 
     <TextView
         android:layout_width="wrap_content"

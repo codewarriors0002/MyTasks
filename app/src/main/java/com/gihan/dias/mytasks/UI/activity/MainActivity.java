@@ -1,4 +1,4 @@
-package com.gihan.dias.mytasks;
+package com.gihan.dias.mytasks.UI.activity;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -10,12 +10,15 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.gihan.dias.mytasks.UI.fragment.AddEditTaskFragment;
+import com.gihan.dias.mytasks.UI.fragment.ProfileFragment;
+import com.gihan.dias.mytasks.R;
+import com.gihan.dias.mytasks.UI.fragment.TasksFragment;
 import com.gihan.dias.mytasks.models.User;
 import com.squareup.picasso.Picasso;
 
@@ -45,19 +48,14 @@ public class MainActivity extends AppCompatActivity
         mtvName = (TextView) headerView.findViewById(R.id.txtName);
         mtvEmail = (TextView) headerView.findViewById(R.id.txtEmail);
 
-        // call to displayProfileDetails for
+        // call to displayProfileDetails for display profile
         displayProfileDetails();
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-// using putExtra(String key, Parcelable value) method
-              //  intent.putExtra(“parcel_data”, movie);
-                //Movie movie = (Movie) getIntent().getParcelableExtra("parcel_data");
 
-               // Intent intent = new Intent(getActivity(), AddEditTaskActivity.class);
-               // startActivity(intent);
                 loadAddEditeFragment();
             }
         });
@@ -68,7 +66,6 @@ public class MainActivity extends AppCompatActivity
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
-
 
         navigationView.setNavigationItemSelectedListener(this);
 
@@ -101,27 +98,9 @@ public class MainActivity extends AppCompatActivity
 
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
 
-        return super.onOptionsItemSelected(item);
-    }
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
@@ -129,19 +108,18 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_profille) {
-            loadprofileFragment();
-        } else if (id == R.id.nav_gallery) {
+        switch (id){
+            case R.id.nav_profille :
+                loadprofileFragment();
+                break;
 
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
+            case R.id.nav_task :
+                loadTasksFragment();
+                break;
 
         }
+
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -170,6 +148,11 @@ public class MainActivity extends AppCompatActivity
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.content_frame,addEditTaskFragment,"addEditTaskFragment");
         transaction.commit();
+    }
+
+    // set AvtionBar title
+    public void setActionBarTitle(int title) {
+        getSupportActionBar().setTitle(title);
     }
 
 

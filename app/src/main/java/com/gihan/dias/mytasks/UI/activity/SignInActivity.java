@@ -1,4 +1,4 @@
-package com.gihan.dias.mytasks;
+package com.gihan.dias.mytasks.UI.activity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -6,9 +6,12 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Toast;
 
+import com.gihan.dias.mytasks.R;
 import com.gihan.dias.mytasks.models.User;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -31,11 +34,14 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
-       // Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
         context = getApplicationContext();
+
         signIn = (SignInButton) findViewById(R.id.sign_in_button);
         signIn.setOnClickListener(this);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
 
 
@@ -113,20 +119,13 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
             String name = account.getDisplayName();
             String emailAddress = account.getEmail();
             String profileImgUrl = account.getPhotoUrl().toString();
+            try{
 
-            User user = new User(name, emailAddress, profileImgUrl);
-            user.save();
-          /*  com.gihan.dias.mytasks.models.Task task1 = new com.gihan.dias.mytasks.models.Task("task1","2015-08-11 ","type1");
-            task1.save();
-            com.gihan.dias.mytasks.models.Task task2 = new com.gihan.dias.mytasks.models.Task("task2","2015-08-12 ","type1");
-            task2.save();
-            com.gihan.dias.mytasks.models.Task task3 = new com.gihan.dias.mytasks.models.Task("task3","2015-08-13 ","type1");
-            task3.save();
-            com.gihan.dias.mytasks.models.Task task4 = new com.gihan.dias.mytasks.models.Task("task4","2015-08-14 ","type1");
-            task4.save();
-            com.gihan.dias.mytasks.models.Task task5 = new com.gihan.dias.mytasks.models.Task("task5","2018-09-16 ","type1");
-            task5.save();
-                */
+                User user = new User(name, emailAddress, profileImgUrl);
+                user.save();
+            }catch (Exception e){
+                Toast.makeText(this, R.string.something_wrong, Toast.LENGTH_SHORT).show();
+            }
 
 
             Intent intent = new Intent(this, MainActivity.class);

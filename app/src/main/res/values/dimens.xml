@@ -5,7 +5,7 @@
     <dimen name="nav_header_vertical_spacing">8dp</dimen>
     <dimen name="nav_header_height">176dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
-    <dimen name="signIn_sPaddingTop">45dp</dimen>
+
     <dimen name="signIn_sTextSize">20dp</dimen>
     <dimen name="signIn_sPaddingHorizotal">15dp</dimen>
     <dimen name="fment_profile_img_marginTop">45dp</dimen>
@@ -18,4 +18,7 @@
     <dimen name="item_task_header_container_paddingVertical">12dp</dimen>
     <dimen name="item_task_header_container_paddingHorizontal">15dp</dimen>
     <dimen name="item_task_header_txtSize">20sp</dimen>
+    <dimen name="add_edit_task_content_paddingTop">20dp</dimen>
+    <dimen name="add_edit_task_content_padding">15dp</dimen>
+    <dimen name="add_edit_task_content_paddingBottom">20dp</dimen>
 </resources>

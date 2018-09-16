@@ -21,4 +21,18 @@
     <string name="header">Header</string>
     <string name="something_wrong">Something Wrong</string>
     <string name="title_activity_add_edit_task">AddEditTaskActivity</string>
+    <string name="what_is_to_be_done">What is to be done</string>
+    <string name="enter_task_here">Enter Task Here</string>
+    <string name="due_date">Due Date</string>
+    <string name="date_not_set">Date not set</string>
+    <string name="time">Time</string>
+    <string name="time_not_set">Time not set</string>
+    <string name="add_to_list">Add to List</string>
+    <string name="save">Save</string>
+    <string name="task_list">My Tasks</string>
+    <string name="create_new_task">Create new Task</string>
+    <string name="update_task">Update Task</string>
+    <string name="task_name_exist">Task Name Exsist</string>
+    <string name="user_profile">UserProfile</string>
+    <string name="task">Tasks</string>
 </resources>

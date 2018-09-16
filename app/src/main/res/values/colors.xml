@@ -4,6 +4,7 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="primaryBlue">#4F6D7A</color>
+    <color name="primaryBlueLight">#b3d9e9</color>
     <color name="signIn_sTextColor">#ffffff</color>
     <color name="white">#ffffff</color>
 </resources>

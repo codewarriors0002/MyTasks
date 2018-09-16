@@ -13,10 +13,12 @@
         android:paddingHorizontal="@dimen/item_task_container_paddingHorizontal">
 
         <LinearLayout
+            android:id="@+id/cotentTask"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_weight="14">
+            android:layout_weight="14"
+            android:clickable="true">
 
             <TextView
                 android:id="@+id/txtTaskName"
@@ -56,6 +58,7 @@
             android:layout_weight="1">
 
         <CheckBox
+            android:id="@+id/cbDelete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
